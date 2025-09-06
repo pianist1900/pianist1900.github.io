@@ -1,0 +1,14 @@
+/* ① 仅隐藏首页头图中的大标题文本，保留副标题 */
+/* 主题常见几种标题类名都兜住 */
+.intro-header .site-heading h1,
+.intro-header .site-heading .brand,
+.intro-header .site-heading .site-title,
+.intro-header .site-heading .page-title {
+  /* 隐藏文本但保留占位，避免高度塌陷 */
+  visibility: hidden !important;
+  pointer-events: none;
+  /* 兜底：若上面仍被主题样式覆盖，取消可见字号
+  font-size: 0 !important;
+  line-height: 0 !important;
+  margin: 0 !important; */
+}
