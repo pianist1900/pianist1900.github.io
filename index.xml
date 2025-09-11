@@ -6,8 +6,15 @@
     <description>Recent content on 龚说龚有理</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 09 Sep 2025 09:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 11 Sep 2025 05:00:00 +0800</lastBuildDate>
     <atom:link href="https://pianist1900.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>技术工具｜构建自己的网站</title>
+      <link>https://pianist1900.github.io/notes/2025-09-11-nt-buildsites/</link>
+      <pubDate>Thu, 11 Sep 2025 05:00:00 +0800</pubDate>
+      <guid>https://pianist1900.github.io/notes/2025-09-11-nt-buildsites/</guid>
+      <description>&lt;!-- &gt; 流水不争先，争的是滔滔不绝。 --&gt;&#xA;&lt;p&gt;&lt;strong&gt;一切从分享欲开始&lt;/strong&gt;&lt;br&gt;&#xA;做技术工作已然有些时间了，大多数的学习都是来源于网络，有感网友的强大，也愈发觉得开源的美妙。从当初学python参考“廖雪峰的网站”，到做数据分析图参考“炸鸡人的博客”，在学习的过程中，发现他们都是有一个自己的网站。伴随着知识增加，开始逐渐想分享自己解决的一些问题，一些领域知识，在考察了知乎、小红书、CNDS之后，发现自己还是适合最存粹的网站，自己建个简单明了、没有限制的网站，于是开始了自己的探索。本篇记录&lt;strong&gt;利用github page+Hugo构建数据自己的网站(Mac为例)&lt;/strong&gt;。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>开站记｜总有那么多想做的事</title>
       <link>https://pianist1900.github.io/post/2025-09-09-rd-qitedeyisheng/</link>

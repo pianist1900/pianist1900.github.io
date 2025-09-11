@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Notes on 龚说龚有理</title>
-    <link>https://pianist1900.github.io/notes/</link>
-    <description>Recent content in Notes on 龚说龚有理</description>
+    <title>Github Pages on 龚说龚有理</title>
+    <link>https://pianist1900.github.io/tags/github-pages/</link>
+    <description>Recent content in Github Pages on 龚说龚有理</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 11 Sep 2025 05:00:00 +0800</lastBuildDate>
-    <atom:link href="https://pianist1900.github.io/notes/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pianist1900.github.io/tags/github-pages/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>技术工具｜构建自己的网站</title>
       <link>https://pianist1900.github.io/notes/2025-09-11-nt-buildsites/</link>
       <pubDate>Thu, 11 Sep 2025 05:00:00 +0800</pubDate>
       <guid>https://pianist1900.github.io/notes/2025-09-11-nt-buildsites/</guid>
       <description>&lt;!-- &gt; 流水不争先，争的是滔滔不绝。 --&gt;&#xA;&lt;p&gt;&lt;strong&gt;一切从分享欲开始&lt;/strong&gt;&lt;br&gt;&#xA;做技术工作已然有些时间了，大多数的学习都是来源于网络，有感网友的强大，也愈发觉得开源的美妙。从当初学python参考“廖雪峰的网站”，到做数据分析图参考“炸鸡人的博客”，在学习的过程中，发现他们都是有一个自己的网站。伴随着知识增加，开始逐渐想分享自己解决的一些问题，一些领域知识，在考察了知乎、小红书、CNDS之后，发现自己还是适合最存粹的网站，自己建个简单明了、没有限制的网站，于是开始了自己的探索。本篇记录&lt;strong&gt;利用github page+Hugo构建数据自己的网站(Mac为例)&lt;/strong&gt;。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>开站记｜写在遗忘之前</title>
-      <link>https://pianist1900.github.io/notes/hello-world/</link>
-      <pubDate>Sat, 06 Sep 2025 09:00:00 +0800</pubDate>
-      <guid>https://pianist1900.github.io/notes/hello-world/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;山是山来海是海，知从行中来。&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;为什么做这个网站&#34;&gt;为什么做这个网站&lt;/h2&gt;&#xA;&lt;p&gt;这个站点有三个目的：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;记录自己的生活与见解&lt;/strong&gt;&lt;br&gt;&#xA;包括读书、旅行、日常所见所思。数字社会里信息滚滚向前，我希望把属于自己的观察、判断与小小的创见沉淀下来，哪怕只是一个片段，也能成为将来的参照。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
