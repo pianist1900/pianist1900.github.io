@@ -185,7 +185,7 @@
                 <!-- > 流水不争先，争的是滔滔不绝。 -->
 <p><strong>一切从分享欲开始</strong><br>
 做技术工作已然有些时间了，大多数的学习都是来源于网络，有感网友的强大，也愈发觉得开源的美妙。从当初学python参考“廖雪峰的网站”，到做数据分析图参考“炸鸡人的博客”，在学习的过程中，发现他们都是有一个自己的网站。伴随着知识增加，开始逐渐想分享自己解决的一些问题，一些领域知识，在考察了知乎、小红书、CNDS之后，发现自己还是适合最存粹的网站，自己建个简单明了、没有限制的网站，于是开始了自己的探索。本篇记录<strong>利用github page+Hugo构建数据自己的网站(Mac为例)</strong>。</p>
-<h3 id="github-pageshugo建站流程">Github pages+Hugo建站流程</h3>
+<h2 id="github-pageshugo建站流程">Github pages+Hugo建站流程</h2>
 <ol>
 <li>
 <p><strong>前置条件</strong></p>
@@ -215,7 +215,7 @@ Github pages支持三个快捷的网站框架，jekyll、hexo、hugo：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo new site <span style="color:#8be9fd;font-style:italic">test</span>
 </span></span></code></pre></div><p>执行完成后出现如下图所示内容，注意这里的test文件是在你当前文件目录下一级生成一个test的文件夹，比如这个当前目录为/Desktop，那么执行完成后test文件夹是在/Desktop/test<br>
 
-  <img src="Screenshot%202025-09-11%20at%2019.13.32.png" alt="alt text">
+  <img src="/img/post/2025-09-11-nt-1.png" alt="">
 
 
 文件夹目录如下图所示，其中</p>
@@ -225,6 +225,10 @@ Github pages支持三个快捷的网站框架，jekyll、hexo、hugo：</p>
 <li>static是用于网页发布中的静态资源，如图片等；</li>
 <li>themes是选用的主题，主题一般会有案例信息可以参考；</li>
 <li>public/文件夹为最终部署的网站内容。
+
+  <img src="/img/post/2025-09-11-nt-2.png" alt="">
+
+
 2.<strong>选择主题</strong>
 Hugo没有默认主题，所以需要自己安装主题，参考<a href="https://gohugo.io/getting-started/quick-start/">hugo指南</a>中看到，官网主题库见<a href="https://themes.gohugo.io">Hugo Themes</a>,以官方案例 <a href="https://ananke-theme.netlify.app">Ananke</a> 主题为例,在termianl中依次输入：</li>
 </ul>
@@ -233,7 +237,7 @@ Hugo没有默认主题，所以需要自己安装主题，参考<a href="https:/
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">echo</span> <span style="color:#f1fa8c">&#34;theme = &#39;ananke&#39;&#34;</span> &gt;&gt; hugo.toml
 </span></span></code></pre></div><p>执行完成后，在terminal中输入<code>hugo server</code>，在<a href="http://localhost:1313/">http://localhost:1313/</a>将会看到由主题生成的空白网站，如下图所示。
 
-  <img src="Screenshot%202025-09-11%20at%2019.41.45.png" alt="alt text">
+  <img src="/img/post/2025-09-11-nt-3.png" alt="">
 
 
 3.<strong>添加页面</strong>
@@ -253,7 +257,7 @@ Hugo没有默认主题，所以需要自己安装主题，参考<a href="https:/
 </span></span><span style="display:flex;"><span>hugo server -D
 </span></span></code></pre></div><p>打开网站，发现内容发布成功。
 
-  <img src="Screenshot%202025-09-11%20at%2019.57.22.png" alt="alt text">
+  <img src="/img/post/2025-09-11-nt-4.png" alt="">
 
 </p>
 </li>
@@ -297,7 +301,7 @@ Hugo没有默认主题，所以需要自己安装主题，参考<a href="https:/
 <p>值得注意的是，我这里的Github推送采用的是<strong>Github ssh</strong>进行推送，具体ssh构建与配置流程见<a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys">github ssh流程</a>。</p>
 </li>
 </ol>
-<h3 id="常见问题">常见问题</h3>
+<h2 id="常见问题">常见问题</h2>
 <pre><code>- 网页不可见：检查是否推送到正确分支，通常为main，并确认 Pages 设置；
 - 文章不显示：确保文章在正确的目录下，部分主题目录不对，则不显示；
 - 主题无效：确认 config.toml 中 theme 名称与主题目录一致，config.toml一定要加主题信息；
