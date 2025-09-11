@@ -2,29 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://pianist1900.github.io/tags/github-pages/</loc>
-    <lastmod>2025-09-11T05:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://pianist1900.github.io/tags/hogo/</loc>
-    <lastmod>2025-09-11T05:00:00+08:00</lastmod>
-  </url><url>
     <loc>https://pianist1900.github.io/notes/</loc>
     <lastmod>2025-09-11T05:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://pianist1900.github.io/tags/</loc>
-    <lastmod>2025-09-11T05:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://pianist1900.github.io/tags/website/</loc>
+    <loc>https://pianist1900.github.io/post/</loc>
     <lastmod>2025-09-11T05:00:00+08:00</lastmod>
   </url><url>
     <loc>https://pianist1900.github.io/notes/2025-09-11-nt-buildsites/</loc>
     <lastmod>2025-09-11T05:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://pianist1900.github.io/</loc>
+    <loc>https://pianist1900.github.io/post/2025-09-11-nt-buildsites/</loc>
     <lastmod>2025-09-11T05:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://pianist1900.github.io/post/</loc>
-    <lastmod>2025-09-09T09:00:00+08:00</lastmod>
+    <loc>https://pianist1900.github.io/</loc>
+    <lastmod>2025-09-11T05:00:00+08:00</lastmod>
   </url><url>
     <loc>https://pianist1900.github.io/reading/</loc>
     <lastmod>2025-09-09T09:00:00+08:00</lastmod>
@@ -46,5 +37,7 @@
     <loc>https://pianist1900.github.io/atmosphere/</loc>
   </url><url>
     <loc>https://pianist1900.github.io/categories/</loc>
+  </url><url>
+    <loc>https://pianist1900.github.io/tags/</loc>
   </url>
 </urlset>
