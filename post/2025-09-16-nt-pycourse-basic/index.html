@@ -10,23 +10,23 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://pianist1900.github.io//img/home-bg-flight.jpg">
-    <meta property="twitter:image" content="https://pianist1900.github.io//img/home-bg-flight.jpg" />
+    <meta property="og:image" content="/img/home-notes-bg.jpeg">
+    <meta property="twitter:image" content="/img/home-notes-bg.jpeg" />
     
 
     
-    <meta name="title" content="" />
-    <meta property="og:title" content="" />
-    <meta property="twitter:title" content="" />
+    <meta name="title" content="python学习｜安装与基础语法" />
+    <meta property="og:title" content="python学习｜安装与基础语法" />
+    <meta property="twitter:title" content="python学习｜安装与基础语法" />
     
 
     
-    <meta name="description" content="大气化学，程序员, 开源爱好者，生活探险家 | 这里是 Gong&#39;s 的博客，与你一起发现更大的世界。">
-    <meta property="og:description" content="大气化学，程序员, 开源爱好者，生活探险家 | 这里是 Gong&#39;s 的博客，与你一起发现更大的世界。" />
-    <meta property="twitter:description" content="大气化学，程序员, 开源爱好者，生活探险家 | 这里是 Gong&#39;s 的博客，与你一起发现更大的世界。" />
+    <meta name="description" content="系统性讲解python的基础，为后续分析提供支撑">
+    <meta property="og:description" content="系统性讲解python的基础，为后续分析提供支撑" />
+    <meta property="twitter:description" content="系统性讲解python的基础，为后续分析提供支撑" />
     
 
-    <meta property="og:url" content="https://pianist1900.github.io/post/" />
+    <meta property="og:url" content="https://pianist1900.github.io/post/2025-09-16-nt-pycourse-basic/" />
 
     
     <meta property="twitter:card" content="summary" />
@@ -36,9 +36,9 @@
     <meta name="keyword"  content="Will Gong, 龚元均, Will Gong Blog, 博客, 个人网站, 互联网, 大气化学, 数据分析">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Posts | Gong&#39;s Blog</title>
+    <title>python学习｜安装与基础语法 | Gong&#39;s Blog</title>
 
-    <link rel="canonical" href="/post/">
+    <link rel="canonical" href="/post/2025-09-16-nt-pycourse-basic/">
 
     
 
@@ -157,7 +157,7 @@
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('/img/home-bg-flight.jpg')
+        background-image: url('/img/home-notes-bg.jpeg')
     }
 </style>
 
@@ -170,13 +170,13 @@
                     <div class="tags">
                         
                     </div>
-                    <h1>Posts</h1>
-                    <h2 class="subheading"></h2>
+                    <h1>python学习｜安装与基础语法</h1>
+                    <h2 class="subheading">千里之行始于足下</h2>
                     <span class="meta">
                         
                             Posted by 
                             
-                                    龚说龚有理
+                                Will Gong
                              
                             on 
                             Tuesday, September 16, 2025
@@ -205,10 +205,114 @@
                 post-container">
 
                 
-                
+                <!-- > 千里之行始于足下 -->
+<h3 id="python-installcondavscode方案">Python install(conda+VScode方案)</h3>
+<p>选择VScode+conda方案主要是因为VScode对不同代码的支持还算不错，同时conda能很好的管理库，虽然我主要是用python，但是这个方案是我认为目前最合适我的方案，主要用于科学分析。</p>
+<ol>
+<li>
+<p><strong>anaconda的安装与使用</strong><br>
+python是一个开源的项目，也有比较多的编译器来使用，python程序环境+编译器(写代码和执行代码的地方)，常见的有pycharm,jupyter notebook,vscode以及Spyder等编译器，总体来讲基本一差不多，初学者建议使用<a href="https://www.anaconda.com/download">anaconda</a>。</p>
+<ul>
+<li>进入<a href="https://www.anaconda.com">Anaconda官网</a>下载与你系统匹配的版本（Windows/macOS/Linux）,现在下载需要注册账号，需要自行注册<br>
+
+  <img src="/img/post/2025-09-17-pythoninstall-1.png" alt="">
+
+</li>
+<li>一路 “Next” 安装即可。Windows下推荐勾选 “Add Anaconda to PATH”。</li>
+<li>安装完成后，打开终端（或 Anaconda Prompt），输入：<code>conda --version</code>,如果能显示版本号，说明安装成功。</li>
+<li>anaconda本身比较厚重，如果你比较熟悉了，建议安装miniconda，一个轻量版的conda。</li>
+</ul>
+</li>
+<li>
+<p><strong>conda库管理</strong><br>
+<code>Anaconda</code>内置了很多科学计算与数据分析常用的库，<code>conda</code>的主要作用就是进行环境管理和库管理。为什么要进行库管理，因为不同版本之间的程序可能不相容，导致环境崩溃，因此可以采用针对不同项目配置不同的库环境。</p>
+<ul>
+<li>创建虚拟环境。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>conda create <span style="color:#ff79c6">-</span>n myenv python<span style="color:#ff79c6">=</span><span style="color:#bd93f9">3.10</span> <span style="color:#6272a4">#创建环境</span>
+</span></span><span style="display:flex;"><span>conda remove <span style="color:#ff79c6">-</span>n myenv <span style="color:#ff79c6">--</span><span style="color:#8be9fd;font-style:italic">all</span> <span style="color:#6272a4">#删除环境</span>
+</span></span></code></pre></div><p>程序中<code>-n myenv</code> 指环境名字叫 myenv，<code>python=3.10</code> 指定 Python 版本,这里可根据需求调整版本，当前python版本为3.13，如果不要求，则默认最新的python版本</p>
+<ul>
+<li>激活/退出环境</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>conda activate myenv <span style="color:#6272a4">#激活环境</span>
+</span></span><span style="display:flex;"><span>conda deactivate <span style="color:#6272a4">#退出环境</span>
+</span></span></code></pre></div><ul>
+<li>安装与卸载库，可以指定安装库的版本</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>conda install numpy <span style="color:#6272a4"># 安装库</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>conda remove numpy <span style="color:#6272a4"># 卸载库</span>
+</span></span></code></pre></div><ul>
+<li>其它如环境查看、已安装库查看</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># 查看已有环境</span>
+</span></span><span style="display:flex;"><span>conda env <span style="color:#8be9fd;font-style:italic">list</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 查看当前环境安装的库</span>
+</span></span><span style="display:flex;"><span>conda <span style="color:#8be9fd;font-style:italic">list</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>VScode安装</strong><br>
+VScode的安装相对比较简单，进入<a href="https://code.visualstudio.com/download">VScode官网</a>,下载符合自己电脑版本的软件
+
+  <img src="/img/post/2025-09-17-pythoninstall-2.png" alt="">
+
+
+下载完成后点击安装就行，Mac比较简单直接拖拽就行，windows略微复杂些，具体步骤如下：</p>
+<ol>
+<li>运行安装程序，找到下载的安装文件（通常是 .exe 文件），双击运行；</li>
+<li>接受许可协议，阅读许可协议，勾选&quot;我接受协议&quot;，然后点击&quot;下一步&quot;；</li>
+<li>选择安装位置，选择你想要安装VSCode的文件夹路径，默认是在C盘的Program Files文件夹中。如果你想更改位置，可以点击&quot;浏览&quot;按钮选择其他路径。</li>
+<li>选择开始菜单文件夹，保持默认设置或自定义开始菜单中的文件夹名称，然后点击&quot;下一步&quot;；</li>
+<li>选择附加任务，其中添加到 PATH（推荐），建议全部勾选以获得更好的使用体验。</li>
+<li>开始安装，安装完成后，如果你想立即启动 VSCode，保持&quot;启动 Visual Studio Code&quot;的复选框被勾选，然后点击&quot;完成&quot;。初次打开会有简单教程，可以一看，选择主题什么的。
+
+  <img src="/img/post/2025-09-17-pythoninstall-3.png" alt="">
+
+</li>
+</ol>
+</li>
+<li>
+<p><strong>VScode配置conda</strong></p>
+<ol>
+<li><strong>中文插件</strong>
+点击在俄罗斯方块，在搜索框中输入<code>chinese</code>，出现如图所示的插件包，点击<code>install</code>，安装完后右下角提示<code>Change Language and Restart</code>，点击确认。
+
+  <img src="/img/post/2025-09-17-pythoninstall-4.png" alt="">
+
+</li>
+<li><strong>python插件</strong>
+同样的地方，输入<code>python</code>,安装python包后即可，安装完成后。新建文件，提示选择语言，输入<code>python</code>进入程序语言的编辑界面，点击运行会提示python的编译器，这个时候需要选择<code>对应anaconda的环境</code>或者python即可，可根据不同项目的需要选择不同的conda环境,如有不明白，请移步VScode官网<a href="https://code.visualstudio.com/docs/python/python-tutorial">Getting Started with Python in VS Code</a>
+
+  <img src="/img/post/2025-09-17-pythoninstall-5.png" alt="">
+
+</li>
+<li><strong>安装jupyter notebook</strong>
+同理安装jupyter notebook即可，在使用过程中，可以通过命令<code>Create: New Jupyter Notebook</code>创建.ipynb文件，当然也可以直接创建一个.ipynb文件，开始jupyter notebook编程。如有不明白，请移步VScode官网<a href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks">Jupyter Notebooks in VS Code</a>
+
+  <img src="/img/post/2025-09-17-pythoninstall-6.png" alt="">
+
+</li>
+</ol>
+</li>
+</ol>
+<p>至此，所有配置都配置好了，可以愉快的写第一个python文件了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#39;Hello world! My name is xxx&#39;</span>)
+</span></span></code></pre></div>
 
                 
 
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2025-09-11-nt-buildsites/" data-toggle="tooltip" data-placement="top" title="技术工具｜构建自己的网站">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
                 
 
                 

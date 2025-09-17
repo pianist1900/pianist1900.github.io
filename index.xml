@@ -6,8 +6,22 @@
     <description>Recent content on 龚说龚有理</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 11 Sep 2025 05:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 16 Sep 2025 09:00:00 +0800</lastBuildDate>
     <atom:link href="https://pianist1900.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>python学习｜安装与基础语法</title>
+      <link>https://pianist1900.github.io/notes/2025-09-16-nt-pycourse-basic/</link>
+      <pubDate>Tue, 16 Sep 2025 09:00:00 +0800</pubDate>
+      <guid>https://pianist1900.github.io/notes/2025-09-16-nt-pycourse-basic/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;千里之行始于足下&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;h3 id=&#34;introduction-to-python-course&#34;&gt;Introduction to Python Course&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;python 学习目标&lt;/strong&gt;&#xA;1.熟练使用python，包括写、读程序和新python库的学习；&#xA;2.处理数据并实现可视化；&#xA;3.python自动化批量脚本；&#xA;4.通用大模型AI工具的辅助；&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>python学习｜安装与基础语法</title>
+      <link>https://pianist1900.github.io/post/2025-09-16-nt-pycourse-basic/</link>
+      <pubDate>Tue, 16 Sep 2025 09:00:00 +0800</pubDate>
+      <guid>https://pianist1900.github.io/post/2025-09-16-nt-pycourse-basic/</guid>
+      <description>&lt;!-- &gt; 千里之行始于足下 --&gt;&#xA;&lt;h3 id=&#34;python-installcondavscode方案&#34;&gt;Python install(conda+VScode方案)&lt;/h3&gt;&#xA;&lt;p&gt;选择VScode+conda方案主要是因为VScode对不同代码的支持还算不错，同时conda能很好的管理库，虽然我主要是用python，但是这个方案是我认为目前最合适我的方案，主要用于科学分析。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>技术工具｜构建自己的网站</title>
       <link>https://pianist1900.github.io/notes/2025-09-11-nt-buildsites/</link>
