@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="龚说龚有理">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="/img/home-notes-bg.jpeg">
+    <meta property="twitter:image" content="/img/home-notes-bg.jpeg" />
+    
+
+    
+    <meta name="title" content="python学习｜文件处理" />
+    <meta property="og:title" content="python学习｜文件处理" />
+    <meta property="twitter:title" content="python学习｜文件处理" />
+    
+
+    
+    <meta name="description" content="系统性讲解python的基础，为后续分析提供支撑">
+    <meta property="og:description" content="系统性讲解python的基础，为后续分析提供支撑" />
+    <meta property="twitter:description" content="系统性讲解python的基础，为后续分析提供支撑" />
+    
+
+    <meta property="og:url" content="https://pianist1900.github.io/notes/2025-10-06-nt-pycs-file-handling/" />
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Will Gong, 龚元均, Will Gong Blog, 博客, 个人网站, 互联网, 大气化学, 数据分析">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>python学习｜文件处理 | Gong&#39;s Blog</title>
+
+    <link rel="canonical" href="/notes/2025-10-06-nt-pycs-file-handling/">
+
+    
+
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.min.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    <link rel="stylesheet" href="https://pianist1900.github.io/css/hidden-hero-title.css">
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">龚说龚有理</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                    
+                    
+		    
+                        <li><a href="/atmosphere//">ATMOSPHERE</a></li>
+                    
+                        <li><a href="/reading//">READING</a></li>
+                    
+                        <li><a href="/notes//">NOTES</a></li>
+                    
+                        <li><a href="/about//">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+<header class="intro-header" style="background-image: url('/img/home-bg-flight.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>龚说龚有理 </h1>
+                    
+		    <span class="subheading">山是山来海是海，知从行中来</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+            
+            <div class="
+            col-lg-8 col-lg-offset-1
+            col-md-8 col-md-offset-1
+            col-sm-12
+            col-xs-12
+            post-container">
+            
+                <!-- > 千里之行始于足下 -->
+<h3 id="python-文件处理">Python 文件处理</h3>
+<p>文件处理是数据处理与分析的核心，python有多种文件处理方式，本部分内容重点讲解python的基础文件处理，包括读写文件、文件操作以及多个文件读取等</p>
+<ol>
+<li>
+<p><strong>文件基础操作</strong><br>
+在Python中，文件读写最基础的函数是<code>open()</code>，它用于打开文件并返回一个文件对象。它通常包含两个部分的参数，一个是文件，另外文件的操作方式，如下列的<code>python</code>代码所示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>f <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">open</span>(file, mode<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;r&#39;</span>)
+</span></span></code></pre></div><p>file：文件路径<br>
+mode：文件打开模式，常见的操作有方式有</p>
+<ul>
+<li>&ldquo;r&rdquo; - 读文件 - 默认的读取文件，如果文件不存在会报错</li>
+<li>&ldquo;a&rdquo; - 添加 - 打开一个文件往里添加内容，往后面添加，如果文件不存在会创建一个文件</li>
+<li>&ldquo;w&rdquo; - 写文件 - 打开一个用来写的文件，如果文件不存在会生成一个文件</li>
+<li>&ldquo;x&rdquo; - 创建文件 - 创建新的文件用于添加内容，如果文件存在会报错</li>
+<li>&ldquo;t&rdquo; - 文本方式读取 - 默认的读取方式</li>
+<li>&ldquo;b&rdquo; - 二进制 - 读取二进制文件(如图片等)<br>
+<br/></li>
+</ul>
+<p><strong>整个文件一并读(read)</strong></p>
+<p>创建一个<code>test_file.txt</code>，内容如下：</p>
+<pre tabindex="0"><code>This is a test file for reading.
+With open command you can read almost every kind of file
+This is file reading basic skill
+So you need to handle it！
+
+and this is end！！！
+</code></pre><p>首先给定文件的路径，尽量使用绝对路径，然后使用<code>open()</code>打开读的文件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>file <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">r</span><span style="color:#f1fa8c">&#39;/Users/gong/Documents/PKU/Courses/python_basic/test_file.txt&#39;</span><span style="color:#6272a4">#给定文件路径</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># file = &#39;test_file.txt&#39; #如果文件和python程序在同一目录下，可省略千面的路径</span>
+</span></span><span style="display:flex;"><span>f <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">open</span>(file,<span style="color:#f1fa8c">&#39;r&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(f)
+</span></span></code></pre></div><p>读完文件后打印存储文件的<code>f</code>，发现输出的是<code>&lt;_io.TextIOWrapper ···</code>，并不是实际的文件内容，这里表示文件读取成功并临时存储，要看其中内容，需要使用<code>read()</code>命令.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(f<span style="color:#ff79c6">.</span>read())
+</span></span></code></pre></div><p>或者把读取内容存到新的变量，然后打印内容，就会输出对应的内容</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>content <span style="color:#ff79c6">=</span> f<span style="color:#ff79c6">.</span>read()
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(content)
+</span></span></code></pre></div><p>虽然文件里面的内容输出了，但是对应的内容是什么结构，有多长等等，我们却不知道，因此可以使用更多的命令查看对应的内容信息，如<code>type</code>查看内容类型，<code>len</code>查看内容的长度，帮助我们进一步理解文件内容。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#8be9fd;font-style:italic">type</span>(content))
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#8be9fd;font-style:italic">len</span>(context))
+</span></span></code></pre></div><p>执行上面的程序会发现，读取的内容是一个字符串，字符长度168，这说明<code>read()</code>读取的时候，是把所有的内容都读取为一条字符串，显然这样的方式不利于我们对文件的操作。<br>
+<br/></p>
+<p><strong>按第一行读readline</strong><br>
+为了更好的读取文件，系统提供了另外一个解析内容的命令<code>readline()</code>，就像它字面意思一样，按行读取，与我们眼睛读文件类似,我们还是用上面的文件继续读取：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>f <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">open</span>(file, <span style="color:#f1fa8c">&#34;r&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(f<span style="color:#ff79c6">.</span>readline()) <span style="color:#6272a4">#执行第一行`print`程序输出结果为`This is a test file for reading.`</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(f<span style="color:#ff79c6">.</span>readline()) <span style="color:#6272a4">#执行第一行`print`程序输出结果为内容的第二行</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(f<span style="color:#ff79c6">.</span>readline()) <span style="color:#6272a4">#执行第一行`print`程序输出结果为内容的第三行</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(f<span style="color:#ff79c6">.</span>readline()) <span style="color:#6272a4">#执行第一行`print`程序输出结果为内容的第四行</span>
+</span></span></code></pre></div><p>仔细观察发现<code>readline()</code>它只读了一行，如果需要读第二行，则需要继续用<code>readline()</code>读取第二行。
+这里有个问题，第二个<code>readline()</code>怎么能读到第二行呢？<br>
+这个就是<code>readline()</code>的特别之处，它在读完一行后，就把读的这行从变量中删除，因此第二个<code>readline()</code>是读当前变量的最前面一行。显然它也不符合我们读取文件具体要求。<br>
+<br/></p>
+<p><strong>读所有行readlines</strong><br>
+在<code>readline</code>基础上，python提供了<code>readlines()</code>来按行读所有行的内容，而不是一行一行的重复执行命令读取</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>f <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">open</span>(file, <span style="color:#f1fa8c">&#34;r&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(f<span style="color:#ff79c6">.</span>readlines())
+</span></span></code></pre></div><p>执行上面命令输出以下内容</p>
+<pre tabindex="0"><code>[&#39;This is a test file for reading.\n&#39;, &#39;With open command you can read almost every kind of file\n&#39;, &#39;This is file reading basic skill\n&#39;, &#39;So you need to handle it！\n&#39;, &#39;\n&#39;, &#39;and this is end！！！&#39;]
+</code></pre><p>说明<code>readlines()</code>命令是把所有内容按行来读取存到<code>list</code>中，每行为单独的一个元素<br>
+如果想要查看对应的行，则可以通过<code>list</code>的切片来实现，如下所示</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>first_line <span style="color:#ff79c6">=</span> f<span style="color:#ff79c6">.</span>readlines()
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(first_line[<span style="color:#bd93f9">0</span>])
+</span></span></code></pre></div><p>如果行数太多，通过指针切片则不太可行，这时候就需要用到loop，用for循环进行遍历：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>f <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">open</span>(file, <span style="color:#f1fa8c">&#34;r&#34;</span>)
+</span></span><span style="display:flex;"><span>lines <span style="color:#ff79c6">=</span> f<span style="color:#ff79c6">.</span>readlines()
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> l <span style="color:#ff79c6">in</span> lines:
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(l)
+</span></span></code></pre></div><p>这样就会输出每行的内容，对应的，也可以在循环中对每行进行操作，或者找到对应的行。
+<br/>
+<br/></p>
+<p><strong>往文件添加内容</strong><br>
+使用前文提到的“a”，对文件进行内容添加，首先是用添加模式<code>a</code>打开文件,然后用<code>write()</code>往里填充内容，括号里面的内容为添加的内容，内容是添加到前面内容的最后,仍旧以上面的testfile为例</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>f <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">open</span>(file, <span style="color:#f1fa8c">&#34;a&#34;</span>)
+</span></span><span style="display:flex;"><span>f<span style="color:#ff79c6">.</span>write(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c"> Now you can add a new row&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">#添加完成后，读取验证一下</span>
+</span></span><span style="display:flex;"><span>f <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">open</span>(file, <span style="color:#f1fa8c">&#34;r&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(f<span style="color:#ff79c6">.</span>read())
+</span></span></code></pre></div> <br/>
+<p><strong>往新文件写入内容</strong><br>
+使用前文提到的<code>w</code>打开新的文件,然后用<code>write()</code>往里填充内容，仍旧以上面的testfile为例
+请注意如果是打开已有的文件，则新写入内容会覆盖原有的内容</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>new_file <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">r</span><span style="color:#f1fa8c">&#39;/Users/gong/Documents/PKU/Courses/python_basic/test_file_new.txt&#39;</span>
+</span></span><span style="display:flex;"><span>f <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">open</span>(new_file, <span style="color:#f1fa8c">&#34;w&#34;</span>)
+</span></span><span style="display:flex;"><span>f<span style="color:#ff79c6">.</span>write(<span style="color:#f1fa8c">&#34;Now you can add a new new new row&#34;</span>)
+</span></span><span style="display:flex;"><span>f <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">open</span>(new_file, <span style="color:#f1fa8c">&#34;r&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(f<span style="color:#ff79c6">.</span>read())
+</span></span></code></pre></div> <br/>
+<p><strong>关闭文件</strong><br>
+通常文件打开后，操作完成需要关闭对应的文件，这时主要用<code>.close()</code>，如下所示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>f <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">open</span>(<span style="color:#f1fa8c">&#34;testfile.txt&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(f<span style="color:#ff79c6">.</span>readline())
+</span></span><span style="display:flex;"><span>f<span style="color:#ff79c6">.</span>close()
+</span></span></code></pre></div> <br/>
+<p><strong>使用with读取文件</strong><br>
+为了避免读文件经常忘了关闭文件，使用<code>with</code>进行文件读取，这样就免去漏掉关闭文件，如下所示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>file <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">r</span><span style="color:#f1fa8c">&#39;/Users/gong/Documents/PKU/Courses/python_basic/test_file.txt&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">with</span> <span style="color:#8be9fd;font-style:italic">open</span>(file) <span style="color:#ff79c6">as</span> f:
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(f<span style="color:#ff79c6">.</span>read())
+</span></span></code></pre></div> <br/>
+<p><strong>创建新文件</strong><br>
+使用<code>x</code>模式创建新的文件，如下所示</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>f <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">open</span>(<span style="color:#f1fa8c">&#34;newfile.txt&#34;</span>, <span style="color:#f1fa8c">&#34;x&#34;</span>)
+</span></span></code></pre></div><p>注意：如果文件存在，则会报错</p>
+<p><strong>小练习</strong></p>
+<blockquote>
+</blockquote>
+<p>把test_file的第3-4行提取出来，并放到一个新的文件里</p>
+<blockquote>
+</blockquote>
+</li>
+<li>
+<p><strong>文件基本操作</strong><br>
+当然处理文件除了读写外，还有文件的基本操作，主要用到os模块，详见<a href="https://docs.python.org/3/library/os.html">python os model</a>，
+python构建的os模块用于跟系统进行交互，如创建文件、删除文件、创建目录、查找文件以及环境变量等，这里对常用的进行简单介绍
+<br/>
+<br/>
+<strong>os文件操作</strong><br>
+首先是目录管理，包括创建目录<code>mkdir</code>、删除目录<code>rmdir</code>、改变路径<code>chdir</code>、列出路径下文件<code>listdir</code>，具体使用如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4">#生成testdir的文件目录，如果目录文件存在则会报错</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>mkdir(<span style="color:#f1fa8c">&#39;/Users/gong/Documents/PKU/Courses/python_basic/testdir&#39;</span>) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">#删除testdir的文件目录，如果目录文件不存在则会报错</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>rmdir(<span style="color:#f1fa8c">&#39;/Users/gong/Documents/PKU/Courses/python_basic/testdir&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">#改变程序的运行路径，通常是切换到目标文件下</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>chdir(path)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">#列出路径下的所有文件</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>listdir(path)
+</span></span></code></pre></div><p>关于文件的操作，主要是文件名修改<code>rename</code>、删除文件<code>remove</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4">#重命名文件</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>rename(<span style="color:#f1fa8c">&#39;old file&#39;</span>, <span style="color:#f1fa8c">&#39;new file&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">#删除目标文件，需要确定的文件</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>remove(<span style="color:#f1fa8c">&#39;file&#39;</span>)
+</span></span></code></pre></div> <br/>
+<p><strong>os.path操作</strong><br>
+<code>os.path</code>模块是 Python 处理文件路径的重要工具，提供了大量与路径相关的函数，可以帮助我们高效、安全地操作文件系统。</p>
+<ol>
+<li>获取绝对路径和相对路径</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> os
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>getcwd() <span style="color:#6272a4"># 获取当前工作目录</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>abspath(<span style="color:#f1fa8c">&#39;.&#39;</span>) <span style="color:#6272a4"># 获取绝对路径</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>basename(<span style="color:#f1fa8c">&#39;file&#39;</span>) <span style="color:#6272a4"># 获取文件名</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>dirname(<span style="color:#f1fa8c">&#39;file&#39;</span>) <span style="color:#6272a4">#获取文件所在目录</span>
+</span></span></code></pre></div><ol start="2">
+<li>判断路径与文件状态</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> os
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>isfile(<span style="color:#f1fa8c">&#39;file&#39;</span>) <span style="color:#6272a4">#判断给定file是否为文件</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>isdir(<span style="color:#f1fa8c">&#39;file&#39;</span>) <span style="color:#6272a4">#判断给定file是否文一个路径</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>samefile(path1, path2) <span style="color:#6272a4">#判断两个文件是否相同</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>exists(file) <span style="color:#6272a4">#判断文件是否存在</span>
+</span></span></code></pre></div><ol start="3">
+<li>路径拼接与分割,这里路径的拼接在处理数据时常用，应该熟练掌握。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> os
+</span></span><span style="display:flex;"><span>filepath <span style="color:#ff79c6">=</span> os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>join(<span style="color:#f1fa8c">&#39;/Users/gong/Documents/PKU/Courses/python_basic&#39;</span>,<span style="color:#f1fa8c">&#39;testfile.ext&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(filepath)
+</span></span><span style="display:flex;"><span>folder, filename <span style="color:#ff79c6">=</span> os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>split(filepath)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(folder, filename)
+</span></span><span style="display:flex;"><span>name, ext <span style="color:#ff79c6">=</span> os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>splitext(<span style="color:#f1fa8c">&#39;/Users/gong/Documents/PKU/Courses/python_basic/python_course_data/常规小时数据.xls&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(name, ext) 
+</span></span></code></pre></div> <br/>
+<p><strong>os环境变量</strong>
+<code>os</code> 模块不仅能操作文件系统，还能访问系统的环境变量（environment variables），这些变量通常保存着操作系统、用户配置、程序路径等关键信息。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> os
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>name <span style="color:#6272a4"># type of operate system,&#39;nt&#39; means windows,&#39;posix&#39; means linux mac</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>uname() <span style="color:#6272a4"># system information,some system don&#39;t support</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>environ <span style="color:#6272a4"># system environment variables</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#ff79c6">.</span>environ<span style="color:#ff79c6">.</span>get(<span style="color:#f1fa8c">&#39;PATH&#39;</span>)
+</span></span></code></pre></div> <br/>
+<p><strong>shutil文件复制</strong><br>
+虽然python的<code>os</code>很便捷，但是细心的你应该会发现一个关键的操作缺失了，那就是复制，os并不具备复制功能，如果要想实现文件的复制，python常见的有两种方法，一种是通过<code>open()</code>手动读写实现,另外一种则是借助新的模块<code>shutil</code>，使用 <code>shutil</code> 模块直接操作。
+<br/>
+<br/></p>
+<ol>
+<li>手动实现文件复制（适合理解文件流原理）</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>src <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;example.txt&#39;</span>
+</span></span><span style="display:flex;"><span>dst <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;copy_example.txt&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">#打开一个读取的文件和一个写入的文件</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">with</span> <span style="color:#8be9fd;font-style:italic">open</span>(src, <span style="color:#f1fa8c">&#39;r&#39;</span>, ) <span style="color:#ff79c6">as</span> f1, <span style="color:#8be9fd;font-style:italic">open</span>(dst, <span style="color:#f1fa8c">&#39;w&#39;</span>,) <span style="color:#ff79c6">as</span> f2:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> line <span style="color:#ff79c6">in</span> f1:
+</span></span><span style="display:flex;"><span>        f2<span style="color:#ff79c6">.</span>write(line)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;文件复制完成！&#34;</span>)
+</span></span></code></pre></div><p>这种方法是通过逐行读取源文件，再写入目标文件，通常适用于文本文件，对二进制文件（图片、音频等）应使用<code>rb</code>、<code>wb</code> 模式
+<br/>
+<br/>
+2. 使用 <code>shutil</code> 模块复制（推荐方式）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> shutil
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 复制文件（包含内容与权限）</span>
+</span></span><span style="display:flex;"><span>shutil<span style="color:#ff79c6">.</span>copy(<span style="color:#f1fa8c">&#39;example.txt&#39;</span>, <span style="color:#f1fa8c">&#39;backup/example_copy.txt&#39;</span>) <span style="color:#6272a4">#给出旧文件以及新文件，需明确路径</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;文件复制成功！&#34;</span>)
+</span></span></code></pre></div><p>既然<code>shutil</code>可以复制文件，当然<code>shutil</code>也支持其它文件管理，如删除、移动等，但个人建议除复制外，其它使用<code>os</code>的比较好。<br>
+<strong>小练习</strong></p>
+<blockquote>
+</blockquote>
+<ul>
+<li>创建一个名为你名字的文件夹</li>
+<li>在文件夹里创建一个名为你名字的文本文件，里面包含任意两句话</li>
+<li>复制该文件，并重新命名为后缀为bak的文件</li>
+<li>输出改目录下的bak文件信息,包含路径，文件名、文件创建时间和大小等(后两个问题需查阅os.path的用法)</li>
+<li>删除原始的文本文件</li>
+</ul>
+<blockquote>
+</blockquote>
+</li>
+<li>
+<p><strong>批量处理文件</strong><br>
+读取单个文件时，可以通过路径拼接找到对应的文件，如下所示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> os
+</span></span><span style="display:flex;"><span>input_path <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">r</span><span style="color:#f1fa8c">&#39;/Users/gong/Documents/PKU/Courses/python_basic/python_course_data&#39;</span>
+</span></span><span style="display:flex;"><span>files <span style="color:#ff79c6">=</span> os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>join(input_path,<span style="color:#f1fa8c">&#39;*.txt&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(files)
+</span></span></code></pre></div><p>但是上述办法只能读取单个文件，读取多个时需要把多个文件都列出，难免麻烦，好在python有几种便捷的方法来支持读取多个文件。
+<br/>
+<br/>
+<strong>方法1.使用 <code>glob.glob()</code></strong></p>
+<p><code>glob.glob()</code> 会自动解析类似 <code>*.txt</code> 这样的通配符（所有以<code>.txt</code>结尾的文件，<code>*</code>代表所有）它返回一个完整路径列表,通过<code>for</code>循环可以直接操作所有文件，非常适合批量文件读取任务。举例如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> glob
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> os
+</span></span><span style="display:flex;"><span>files <span style="color:#ff79c6">=</span> glob<span style="color:#ff79c6">.</span>glob(os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>join(input_path,<span style="color:#f1fa8c">&#39;*.txt&#39;</span>)) <span style="color:#6272a4"># 匹配所有txt文件</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">#files = glob.glob(os.path.join(input_path,&#39;*&#39;)) # 匹配路径下所有文件</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">#files = glob.glob(os.path.join(input_path,&#39;2_*&#39;)) # 匹配所有2_开头t的文件</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(files)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> file <span style="color:#ff79c6">in</span> files:
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;读取：&#34;</span>, file)
+</span></span></code></pre></div> <br/>
+<p><strong>方法2.使用os.listdir()</strong></p>
+<p>在前面系统os操作中，我们学习了<code>os.listdir()</code>,是把对应目录下的文件都列出，因此我们可以采用<code>os.listdir()</code> + <code>os.path.join()</code>来实现。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> os
+</span></span><span style="display:flex;"><span>input_path <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">r</span><span style="color:#f1fa8c">&#39;/Users/gong/Documents/PKU/Courses/python_basic/python_course_data&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> file <span style="color:#ff79c6">in</span> os<span style="color:#ff79c6">.</span>listdir(input_path): <span style="color:#6272a4">#列出文件夹下的所有文件</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> file<span style="color:#ff79c6">.</span>endswith(<span style="color:#f1fa8c">&#39;.txt&#39;</span>):  <span style="color:#6272a4"># 筛选txt文件</span>
+</span></span><span style="display:flex;"><span>        full_path <span style="color:#ff79c6">=</span> os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>join(input_path, file) <span style="color:#6272a4">#拼接文件完整路径</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;正在读取文件：&#34;</span>, full_path)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">with</span> <span style="color:#8be9fd;font-style:italic">open</span>(full_path, <span style="color:#f1fa8c">&#39;r&#39;</span>, ) <span style="color:#ff79c6">as</span> f:
+</span></span><span style="display:flex;"><span>            content <span style="color:#ff79c6">=</span> f<span style="color:#ff79c6">.</span>read()
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">print</span>(content) 
+</span></span></code></pre></div><p>上述方法中，如果是读文件夹下所有文件，可以将if判断的行删除后直接拼接文件路径读取
+<br/>
+<br/>
+<strong>方法3. 使用 pathlib</strong><br>
+上面的2种方法是一直以来都有的方法，随着程序的发展，<code>pathlib</code>模块也支持相关的操作，<code>pathlib</code>是推荐的现代路径库，主要用法<code>Path.glob()</code> 功能与 <code>glob.glob()</code> 类似,示例如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> pathlib <span style="color:#ff79c6">import</span> Path
+</span></span><span style="display:flex;"><span>input_path <span style="color:#ff79c6">=</span> Path(<span style="color:#f1fa8c">&#39;/Users/gong/Documents/PKU/Courses/python_basic/python_course_data&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> file <span style="color:#ff79c6">in</span> input_path<span style="color:#ff79c6">.</span>glob(<span style="color:#f1fa8c">&#39;*.txt&#39;</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;读取文件：&#34;</span>, file)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">with</span> <span style="color:#8be9fd;font-style:italic">open</span>(file, <span style="color:#f1fa8c">&#39;r&#39;</span>) <span style="color:#ff79c6">as</span> f:
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(f<span style="color:#ff79c6">.</span>readline())  <span style="color:#6272a4"># 打印第一行</span>
+</span></span></code></pre></div><p><code>pathlib</code>的语法更清晰，可直接用 <code>/</code> 拼接路径：<code>file = input_path / &quot;data.txt&quot;</code></p>
+<p>总结：几种方法可根据自己的习惯来进行选择，通常只需要一种，大多数情况下的程序执行时间差异不会太大。</p>
+<p><strong>小练习</strong></p>
+<blockquote>
+</blockquote>
+<ol>
+<li>read 450390  file  7/31 temp</li>
+<li>read all file cal 7/31 temp average</li>
+</ol>
+<blockquote>
+</blockquote>
+<h2 id="下载练习">下载练习</h2>
+<p>如果你需要一个练习，可以尝试下载后执行练习，<a href="/downloads/3_read_files.zip">read_files.ipynb</a>。</p>
+</li>
+</ol>
+
+            
+             
+            
+<script src="https://giscus.app/client.js"
+        data-repo="pianist1900/pianist1900.github.io"
+        data-repo-id="R_kgDOPmSUaw"
+        data-category="General"
+        data-category-id="DIC_kwDOPmSUa84CvTsQ"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+
+
+            
+            </div>
+            
+            
+
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+	
+    
+    
+    
+    
+
+    
+    
+    
+</div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="mailto:2506790078@pku.edu.cn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/img/wechat-friend-invate.png">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; 龚说龚有理 2025
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow" title="' + t + '">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

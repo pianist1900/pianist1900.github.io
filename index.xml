@@ -6,8 +6,22 @@
     <description>Recent content on 龚说龚有理</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 20 Sep 2025 09:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 06 Oct 2025 09:00:00 +0800</lastBuildDate>
     <atom:link href="https://pianist1900.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>python学习｜文件处理</title>
+      <link>https://pianist1900.github.io/notes/2025-10-06-nt-pycs-file-handling/</link>
+      <pubDate>Mon, 06 Oct 2025 09:00:00 +0800</pubDate>
+      <guid>https://pianist1900.github.io/notes/2025-10-06-nt-pycs-file-handling/</guid>
+      <description>&lt;!-- &gt; 千里之行始于足下 --&gt;&#xA;&lt;h3 id=&#34;python-文件处理&#34;&gt;Python 文件处理&lt;/h3&gt;&#xA;&lt;p&gt;文件处理是数据处理与分析的核心，python有多种文件处理方式，本部分内容重点讲解python的基础文件处理，包括读写文件、文件操作以及多个文件读取等&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>python学习｜文件处理</title>
+      <link>https://pianist1900.github.io/post/2025-10-06-nt-pycs-file-handling/</link>
+      <pubDate>Mon, 06 Oct 2025 09:00:00 +0800</pubDate>
+      <guid>https://pianist1900.github.io/post/2025-10-06-nt-pycs-file-handling/</guid>
+      <description>&lt;!-- &gt; 千里之行始于足下 --&gt;&#xA;&lt;h3 id=&#34;python-文件处理&#34;&gt;Python 文件处理&lt;/h3&gt;&#xA;&lt;p&gt;文件处理是数据处理与分析的核心，python有多种文件处理方式，本部分内容重点讲解python的基础文件处理，包括读写文件、文件操作以及多个文件读取等&lt;/p&gt;</description>
+    </item>
     <item>
       <title>python学习｜基础语法</title>
       <link>https://pianist1900.github.io/notes/2025-09-20-nt-pycs-basic/</link>
