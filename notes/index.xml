@@ -6,8 +6,15 @@
     <description>Recent content in Notes on 龚说龚有理</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 06 Oct 2025 09:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 11 Oct 2025 09:00:00 +0800</lastBuildDate>
     <atom:link href="https://pianist1900.github.io/notes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>python学习｜文件处理(pandas)</title>
+      <link>https://pianist1900.github.io/notes/2025-10-12-nt-pycs-file-handling2/</link>
+      <pubDate>Sat, 11 Oct 2025 09:00:00 +0800</pubDate>
+      <guid>https://pianist1900.github.io/notes/2025-10-12-nt-pycs-file-handling2/</guid>
+      <description>&lt;!-- &gt; 千里之行始于足下 --&gt;&#xA;&lt;h3 id=&#34;pandas库处理数据&#34;&gt;Pandas库处理数据&lt;/h3&gt;&#xA;&lt;p&gt;本节续接着上节学习的open()函数，主要讲解pandas读取文件，熟悉文件操作与 pandas 读取方法都是必须的技能&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;利用pandas库读取文件&lt;/strong&gt;&lt;br&gt;&#xA;在&lt;code&gt;Python&lt;/code&gt;中，&lt;code&gt;Pandas&lt;/code&gt;是&lt;code&gt;Python&lt;/code&gt;中最常用、最强大的数据分析库之一， 它的名字来源于 “Panel Data”（面板数据），最初用于经济学和统计学中的多维数据处理，如今已成为数据科学、机器学习，兴许环境科学中不可或缺的工具，它提供了极其方便的文件读写函数，常见文件读取格式包括CSV、Excel、JSON、TXT等。&lt;br&gt;&#xA;下面我们用实际例子进行对比讲解，数据内容如下表所示：&lt;/p&gt;</description>
+    </item>
     <item>
       <title>python学习｜文件处理</title>
       <link>https://pianist1900.github.io/notes/2025-10-06-nt-pycs-file-handling/</link>
