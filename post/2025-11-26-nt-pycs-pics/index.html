@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="龚说龚有理">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="/img/home-notes-bg.jpeg">
+    <meta property="twitter:image" content="/img/home-notes-bg.jpeg" />
+    
+
+    
+    <meta name="title" content="python学习｜数据可视化" />
+    <meta property="og:title" content="python学习｜数据可视化" />
+    <meta property="twitter:title" content="python学习｜数据可视化" />
+    
+
+    
+    <meta name="description" content="系统性讲解python的基础应用，为后续分析提供支撑">
+    <meta property="og:description" content="系统性讲解python的基础应用，为后续分析提供支撑" />
+    <meta property="twitter:description" content="系统性讲解python的基础应用，为后续分析提供支撑" />
+    
+
+    <meta property="og:url" content="https://pianist1900.github.io/post/2025-11-26-nt-pycs-pics/" />
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Will Gong, 龚元均, Will Gong Blog, 博客, 个人网站, 互联网, 大气化学, 数据分析">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>python学习｜数据可视化 | Gong&#39;s Blog</title>
+
+    <link rel="canonical" href="/post/2025-11-26-nt-pycs-pics/">
+
+    
+
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.min.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    <link rel="stylesheet" href="https://pianist1900.github.io/css/hidden-hero-title.css">
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">龚说龚有理</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                    
+                    
+		    
+                        <li><a href="/atmosphere//">ATMOSPHERE</a></li>
+                    
+                        <li><a href="/reading//">READING</a></li>
+                    
+                        <li><a href="/notes//">NOTES</a></li>
+                    
+                        <li><a href="/about//">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-notes-bg.jpeg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1>python学习｜数据可视化</h1>
+                    <h2 class="subheading">千里之行始于足下</h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Will Gong
+                             
+                            on 
+                            Wednesday, November 12, 2025
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <!-- > 千里之行始于足下 -->
+<h2 id="matplotlib">Matplotlib</h2>
+<p>前面我们已经学习了利用<code>Pandas</code> 读取数据，并对数据进行简单的分析，本节我们讲解一下利用<code>Python</code>来做图。<code>Python</code>有多个画图的库，例如<code>Matplotlib</code>、<code>seaborn</code>等，先简单学习<code>Python</code>中最流行的数据可视化库之一：<code>Matplotlib</code>。</p>
+<h3 id="1matplotlib库安装"><strong>1.Matplotlib库安装</strong></h3>
+<p>首先，确保你的 <code>Python</code> 环境已经安装了 <code>Matplotlib</code>。如果你还没有安装，可以使用 pip 命令轻松搞定：
+<code>pip install matplotlib</code>，库安装完成后在程序中导入库：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib <span style="color:#ff79c6">as</span> mpl
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span></code></pre></div><h3 id="2画图的基本元素">2.画图的基本元素</h3>
+<p>在 <code>Matplotlib</code> 中，理解 <code>Figure</code> (画布) 和 <code>Axes</code> (坐标系/子图) 这两个核心概念至关重要。</p>
+<ul>
+<li><code>Figure</code> (画布)：你可以把它想象成一张白纸或一个窗口。所有的图表都绘制在这张“纸”上。一个 <code>Figure</code> 可以包含一个或多个<code>Axes</code>。</li>
+<li><code>Axes</code> (坐标系/子图)：这是你真正绘图的区域。它包含x轴、y轴、刻度、标签和实际的数据点。一个 <code>Figure</code> 可以有多个 <code>Axes</code>，每个<code>Axes</code> 都是一个独立的绘图区域。</li>
+</ul>
+<p>其他要素如下图所示；
+
+  <img src="/img/post/2025-11-26-matplotlib-all.png" alt="">
+
+
+详细要素介绍可见下表：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">项目</th>
+          <th style="text-align: center">含义</th>
+          <th style="text-align: center">常用函数</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><strong>Figure</strong></td>
+          <td style="text-align: center">整张画布</td>
+          <td style="text-align: center"><code>plt.figure</code>, <code>plt.subplots</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>Axes</strong></td>
+          <td style="text-align: center">实际绘图区域</td>
+          <td style="text-align: center"><code>fig.add_subplot</code>, <code>plt.subplots</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>Axis（轴）</strong></td>
+          <td style="text-align: center">管理刻度与标签</td>
+          <td style="text-align: center"><code>ax.xaxis</code>, <code>ax.yaxis</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>Spines</strong></td>
+          <td style="text-align: center">边框线</td>
+          <td style="text-align: center"><code>ax.spines[...]</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>Ticks</strong></td>
+          <td style="text-align: center">刻度线</td>
+          <td style="text-align: center"><code>set_major_locator</code>, <code>set_minor_locator</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>Tick labels</strong></td>
+          <td style="text-align: center">刻度文字</td>
+          <td style="text-align: center"><code>set_major_formatter</code>, <code>set_minor_formatter</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>Title</strong></td>
+          <td style="text-align: center">标题</td>
+          <td style="text-align: center"><code>ax.set_title</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>Labels</strong></td>
+          <td style="text-align: center">x/y 轴名字</td>
+          <td style="text-align: center"><code>ax.set_xlabel</code>, <code>ax.set_ylabel</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>Lines</strong></td>
+          <td style="text-align: center">折线</td>
+          <td style="text-align: center"><code>ax.plot</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>Markers</strong></td>
+          <td style="text-align: center">散点</td>
+          <td style="text-align: center"><code>ax.scatter</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>Grid</strong></td>
+          <td style="text-align: center">网格线</td>
+          <td style="text-align: center"><code>ax.grid</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>Legend</strong></td>
+          <td style="text-align: center">图例</td>
+          <td style="text-align: center"><code>ax.legend</code></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="3简单的线图">3.简单的线图</h3>
+<p>线图和散点图，需要对应的x,y轴的数据，这里我们简单构造几个点数据,如下所示：</p>
+<pre tabindex="0"><code>x = [0,1,2,3,4], y = [0,2,4,6,8]
+</code></pre><p>上面数据代表(0,0),(1,2)(3,6),(4,8)几个点，然后我们在程序中进行简单的画图，见下面程序：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4">#导入依赖库</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> pandas <span style="color:#ff79c6">as</span> pd
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">#预设数据</span>
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">2</span>,<span style="color:#bd93f9">3</span>,<span style="color:#bd93f9">4</span>]
+</span></span><span style="display:flex;"><span>y <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">2</span>,<span style="color:#bd93f9">4</span>,<span style="color:#bd93f9">6</span>,<span style="color:#bd93f9">8</span>]
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">#画图</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>figure(figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">5</span>,<span style="color:#bd93f9">3</span>),facecolor<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;white&#39;</span>) <span style="color:#6272a4">#定义画框</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>plot(x,y, label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;2x&#39;</span>, color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;red&#39;</span>, linewidth<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>, marker<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;s&#39;</span>, linestyle<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;--&#39;</span>, markersize<span style="color:#ff79c6">=</span><span style="color:#bd93f9">10</span>, markeredgecolor<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;blue&#39;</span>) <span style="color:#6272a4">#画线图</span>
+</span></span></code></pre></div><p>然后我们得到如下的图：
+
+  <img src="/img/post/2025-11-26-lineplot.png" alt="lienplot">
+
+
+上面的程序中，<code>plt.figure</code>定义一个画布，主要定义画布的大小和颜色，在定义好大小和颜色后，<code>plt.plot(x,y)</code>开始画图折线，其中<code>x,y</code>分别对应x值，y值，即上面列表的两个值，两两对应就成为一个确定的坐标，<code>label</code>是我们这个画图线的名称，方便图例时显示，<code>color</code>是折线图的颜色，<code>linewidth</code>是线的宽度，<code>marker</code>是每个坐标点的方式，<code>linestyle</code>是线图的折线样式，<code>markersize</code>是标记点的大小，<code>markeredgecolor</code>是标记点外框的颜色。 <code>Python</code>画图主要是在画对应图的时候，用不同的参数来细化图的表达。</p>
+<p>常见的参数有：</p>
+<ul>
+<li>颜色：颜色有几种表达方式，一种是颜色名称如<code>red</code>、<code>black</code>、<code>blue</code>、<code>green</code>等，另一种为颜色名称的缩写，如r、b、u、g等，除了这两种外，颜色还可以用16进制的颜色代码，如<code>#FF5555</code>，常用的颜色简有&rsquo;b&rsquo; (蓝色), &lsquo;g&rsquo; (绿色), &lsquo;r&rsquo; (红色), &lsquo;c&rsquo; (青色), &rsquo;m&rsquo; (洋红色), &lsquo;y&rsquo; (黄色), &lsquo;k&rsquo; (黑色), &lsquo;w&rsquo; (白色)。</li>
+<li>标记，标记有两种方式，一种是标记的中文名称，如<code>star</code>、<code>square</code>，另外一种是简易符号，如*、^、等等，常用的标记有：&lsquo;o&rsquo; (圆圈), &lsquo;^&rsquo; (上三角形), &rsquo;s&rsquo; (正方形), &lsquo;D&rsquo; (菱形), &lsquo;*&rsquo; (星形), &lsquo;+&rsquo; (加号)。</li>
+<li>线类型：线类型也有两种方式，名称和符号等，常用的线型： &lsquo;-&rsquo; (实线), &lsquo;&ndash;&rsquo; (虚线), &lsquo;-.&rsquo; (点划线), &lsquo;:&rsquo; (点线)。
+在<code>Matplotlib</code>官方文档 - <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">plot函数</a> 中有更详细的参数说明。</li>
+</ul>
+<p>同时<code>Matlibpolt</code>也支持一种便捷的方式显示，<code>fmt = '[color][marker][line]'</code>，如上面画图程序的我们可以缩写为<code>b^--</code>，在程序中：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>plot(x,y, <span style="color:#f1fa8c">&#39;b^--&#39;</span>, label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;2x&#39;</span>)
+</span></span></code></pre></div><p>在基本的图形完成后，可以根据Axes的画图要素逐步完善剩下的图像内容，通常有标题、XY轴、图例等
+<strong>标题</strong>。增加图像标题，通过<code>plt.title()</code>函数来完成，见代码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>title(<span style="color:#f1fa8c">&#39;Our first graph&#39;</span>,fontsize<span style="color:#ff79c6">=</span><span style="color:#bd93f9">18</span>,fontname<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;Times New Roman&#39;</span>,pad<span style="color:#ff79c6">=</span><span style="color:#bd93f9">10</span>,loc<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;center&#39;</span>)
+</span></span></code></pre></div><p>上面代码中，字符串为画图的标题，后面参数依次为字体大小，标题的字体，距离画框距离，以及对应的位置。<br>
+<strong>XY轴</strong>。接着可以增加xy轴信息，利用<code>plt.xlabel()</code>和<code>plt.ylabel()</code>来完成，可以提前定义字体的一个字典<code>label_fontdict</code>，然后在xy轴中直接调用，如下所示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>label_fontdict<span style="color:#ff79c6">=</span>{<span style="color:#f1fa8c">&#39;fontname&#39;</span>: <span style="color:#f1fa8c">&#39;Comic Sans MS&#39;</span>, <span style="color:#f1fa8c">&#39;fontsize&#39;</span>: <span style="color:#bd93f9">20</span>}
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>xlabel(<span style="color:#f1fa8c">&#39;x axis&#39;</span>,fontdict<span style="color:#ff79c6">=</span>label_fontdict)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>ylabel(<span style="color:#f1fa8c">&#39;y axis&#39;</span>,fontdict<span style="color:#ff79c6">=</span>label_fontdict)
+</span></span></code></pre></div><p><strong>XY轴刻度</strong>。当然刻度设置也不能少，用<code>plt.xticks</code>和<code>plt.yticks</code>分别调整x、y轴的刻度, 用<code>plt.ylim()</code>和<code>plt.xlim()</code>来调整刻度范围。<code>rotation=-20</code>代表刻度的倾斜度</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>xticks(x,fontsize<span style="color:#ff79c6">=</span><span style="color:#bd93f9">20</span>,rotation<span style="color:#ff79c6">=-</span><span style="color:#bd93f9">20</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>yticks(size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">20</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>ylim(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">16</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>xlim(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">4</span>)
+</span></span></code></pre></div><p><strong>图例</strong>。画图不能少了图例，采用<code>plt.legend()</code>来刻画图例，图例参数中<code>ncol</code>代表图例的列,<code>frameon</code>代表图例的方框,<code>loc</code>代表图例的位置，可以用<code>best</code>来自动选择最优位置。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>legend(fontsize<span style="color:#ff79c6">=</span><span style="color:#bd93f9">20</span>,ncol<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>,frameon<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>,loc<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;best&#39;</span>)<span style="color:#6272a4">#loc=&#39;upper right&#39;</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>grid(linestyle<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;--&#39;</span>)
+</span></span></code></pre></div><p><strong>保存</strong>。在完成绘图后，可用<code>plt.savefig()</code>来保存图片，参数中<code>dpi</code>为图片清晰度</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>savefig(<span style="color:#f1fa8c">&#39;our first graph&#39;</span>,dpi<span style="color:#ff79c6">=</span><span style="color:#bd93f9">300</span>,bbox_inches<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;tight&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></div><p><strong>多条线</strong>。以上为一条折线，如果要多条线段如何表示呢，别着急，<code>Matplotlib</code>中一个<code>figure</code>可以叠加多个内容，我们可以不断增加<code>plt.plot()</code>来实现，如下面完整的画图代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">2</span>,<span style="color:#bd93f9">3</span>,<span style="color:#bd93f9">4</span>]
+</span></span><span style="display:flex;"><span>y <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">2</span>,<span style="color:#bd93f9">4</span>,<span style="color:#bd93f9">6</span>,<span style="color:#bd93f9">8</span>]
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>figure(figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">5</span>,<span style="color:#bd93f9">3</span>),facecolor<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;white&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>title_fontdict<span style="color:#ff79c6">=</span>{<span style="color:#f1fa8c">&#39;fontname&#39;</span>: <span style="color:#f1fa8c">&#39;Comic Sans MS&#39;</span>, <span style="color:#f1fa8c">&#39;fontsize&#39;</span>: <span style="color:#bd93f9">20</span>}
+</span></span><span style="display:flex;"><span>label_fontdict<span style="color:#ff79c6">=</span>{<span style="color:#f1fa8c">&#39;fontname&#39;</span>: <span style="color:#f1fa8c">&#39;Comic Sans MS&#39;</span>, <span style="color:#f1fa8c">&#39;fontsize&#39;</span>: <span style="color:#bd93f9">20</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>plot(x,y, label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;2x&#39;</span>, color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;red&#39;</span>, linewidth<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>, marker<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;s&#39;</span>, linestyle<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;--&#39;</span>, markersize<span style="color:#ff79c6">=</span><span style="color:#bd93f9">10</span>, markeredgecolor<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;blue&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># # #2nd line</span>
+</span></span><span style="display:flex;"><span>x2 <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">4.5</span>,<span style="color:#bd93f9">0.5</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># # # Plot part of the graph as line</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>plot(x2[:<span style="color:#bd93f9">6</span>], x2[:<span style="color:#bd93f9">6</span>]<span style="color:#ff79c6">**</span><span style="color:#bd93f9">2</span>, <span style="color:#f1fa8c">&#39;r&#39;</span>, label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;X^2&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># # # # Plot remainder of graph as a dot</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>plot(x2[<span style="color:#bd93f9">5</span>:], x2[<span style="color:#bd93f9">5</span>:]<span style="color:#ff79c6">**</span><span style="color:#bd93f9">2</span>, <span style="color:#f1fa8c">&#39;r--&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>title(<span style="color:#f1fa8c">&#39;Our First Graph!&#39;</span>, fontdict<span style="color:#ff79c6">=</span>{<span style="color:#f1fa8c">&#39;fontname&#39;</span>: <span style="color:#f1fa8c">&#39;Comic Sans MS&#39;</span>, <span style="color:#f1fa8c">&#39;fontsize&#39;</span>: <span style="color:#bd93f9">20</span>})
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>xlabel(<span style="color:#f1fa8c">&#39;x axis&#39;</span>,fontdict<span style="color:#ff79c6">=</span>label_fontdict)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>ylabel(<span style="color:#f1fa8c">&#39;y axis&#39;</span>,fontdict<span style="color:#ff79c6">=</span>label_fontdict)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># # #ticks</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>xticks(x,fontsize<span style="color:#ff79c6">=</span><span style="color:#bd93f9">20</span>,rotation<span style="color:#ff79c6">=-</span><span style="color:#bd93f9">20</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>yticks(size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">20</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>ylim(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">16</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>xlim(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">4</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># # #legend</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>legend(fontsize<span style="color:#ff79c6">=</span><span style="color:#bd93f9">20</span>,ncol<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>,frameon<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>,loc<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;best&#39;</span>)<span style="color:#6272a4">#loc=&#39;upper right&#39;</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>grid(linestyle<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;--&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>savefig(<span style="color:#f1fa8c">&#39;our first graph&#39;</span>,dpi<span style="color:#ff79c6">=</span><span style="color:#bd93f9">300</span>,bbox_inches<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;tight&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></div><p>得到如下的图：
+
+  <img src="/img/post/2025-11-26-lineplot2.png" alt="lineplot2">
+
+</p>
+<h3 id="4柱状图">4.柱状图</h3>
+<p>类似的，我们可以快速的画柱状图，与线图不同的是，需要柱状图构建的数据不同，它需要类别和对应的两两对应，见代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>categories <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;A&#39;</span>, <span style="color:#f1fa8c">&#39;B&#39;</span>, <span style="color:#f1fa8c">&#39;C&#39;</span>, <span style="color:#f1fa8c">&#39;D&#39;</span>, <span style="color:#f1fa8c">&#39;E&#39;</span>]
+</span></span><span style="display:flex;"><span>values <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">23</span>, <span style="color:#bd93f9">45</span>, <span style="color:#bd93f9">56</span>, <span style="color:#bd93f9">12</span>, <span style="color:#bd93f9">39</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>figure(figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">7</span>,<span style="color:#bd93f9">5</span>), facecolor <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;white&#39;</span>,dpi<span style="color:#ff79c6">=</span><span style="color:#bd93f9">100</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>bar(categories, values, color<span style="color:#ff79c6">=</span>[<span style="color:#f1fa8c">&#39;skyblue&#39;</span>, <span style="color:#f1fa8c">&#39;lightcoral&#39;</span>, <span style="color:#f1fa8c">&#39;lightgreen&#39;</span>, <span style="color:#f1fa8c">&#39;orange&#39;</span>, <span style="color:#f1fa8c">&#39;purple&#39;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>title(<span style="color:#f1fa8c">&#34;Bar Chart Example&#34;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>xlabel(<span style="color:#f1fa8c">&#34;Categories&#34;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>ylabel(<span style="color:#f1fa8c">&#34;Values&#34;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></div><p>执行上述代码会得到如下的图，<code>bar</code>图在给参数的时候，需要先给类别,然后再给对应的值,最后是参数。
+
+  <img src="/img/post/2025-11-26-barplot1.png" alt="barplot1">
+
+</p>
+<p>如果想要柱状图的堆叠图，那需要构建多组数据，即一组属于底层数据，另外位于上层组的数据，见如下代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span>labels <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;A&#39;</span>, <span style="color:#f1fa8c">&#39;B&#39;</span>, <span style="color:#f1fa8c">&#39;C&#39;</span>]
+</span></span><span style="display:flex;"><span>values <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">4</span>,<span style="color:#bd93f9">2</span>]
+</span></span><span style="display:flex;"><span>bottom <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">3</span>,<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">3</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>figure(figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">5</span>,<span style="color:#bd93f9">3</span>), facecolor <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;white&#39;</span>,dpi<span style="color:#ff79c6">=</span><span style="color:#bd93f9">100</span>)
+</span></span><span style="display:flex;"><span>bars1 <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>bar(labels,bottom,width<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.8</span>,color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;b&#39;</span>)
+</span></span><span style="display:flex;"><span>bars2 <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>bar(labels, values,width<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.8</span>, bottom<span style="color:#ff79c6">=</span>bottom,color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;c&#39;</span>)
+</span></span></code></pre></div><p>执行上述代码得到如下的图
+
+  <img src="/img/post/2025-11-26-barplot2.png" alt="barplot">
+
+</p>
+<h3 id="5饼图">5.饼图</h3>
+<p>饼图作为常用的图形，我们也会经常用到，这里我们采用常用函数<code>fig, ax = plt.subplots()</code>的方式画图，它会创建一个<code>Figure</code>和一个或多个<code>Axes</code>对象,方便画多个图，下面提供一个饼图的示例代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 数据</span>
+</span></span><span style="display:flex;"><span>labels <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;Category A&#39;</span>, <span style="color:#f1fa8c">&#39;Category B&#39;</span>, <span style="color:#f1fa8c">&#39;Category C&#39;</span>, <span style="color:#f1fa8c">&#39;Category D&#39;</span>]
+</span></span><span style="display:flex;"><span>sizes <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">15</span>, <span style="color:#bd93f9">30</span>, <span style="color:#bd93f9">45</span>, <span style="color:#bd93f9">10</span>] <span style="color:#6272a4"># 各部分所占比例（总和为100或任意数值）</span>
+</span></span><span style="display:flex;"><span>colors <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;gold&#39;</span>, <span style="color:#f1fa8c">&#39;yellowgreen&#39;</span>, <span style="color:#f1fa8c">&#39;lightcoral&#39;</span>, <span style="color:#f1fa8c">&#39;lightskyblue&#39;</span>]
+</span></span><span style="display:flex;"><span>explode <span style="color:#ff79c6">=</span> (<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0.1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>)  <span style="color:#6272a4"># 突出显示 &#39;Category B&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fig, ax <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>subplots(figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">6</span>, <span style="color:#bd93f9">6</span>)) <span style="color:#6272a4"># 设置图表大小，确保是正方形</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>pie(sizes, explode<span style="color:#ff79c6">=</span>explode, labels<span style="color:#ff79c6">=</span>labels, colors<span style="color:#ff79c6">=</span>colors,
+</span></span><span style="display:flex;"><span>    autopct<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;</span><span style="color:#f1fa8c">%1.1f%%</span><span style="color:#f1fa8c">&#39;</span>, shadow<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>, startangle<span style="color:#ff79c6">=</span><span style="color:#bd93f9">140</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>axis(<span style="color:#f1fa8c">&#39;equal&#39;</span>)  <span style="color:#6272a4"># 确保饼图是正圆，而不是椭圆</span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>set_title(<span style="color:#f1fa8c">&#34;Distribution of Categories&#34;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></div><p>运行这段代码，你会看到展示各类别比例的饼图(下图)，其中<code>ax.pie()</code>参数分别代表:占比、是否突出显示(“Category B”部分被轻微“分离”出来，以示强调)、名称、颜色、占比小数位、是否阴影以及角度。
+
+  <img src="/img/post/2025-11-26-pie.png" alt="pieplot">
+
+</p>
+<h3 id="6散点图">6.散点图</h3>
+<p>散点图是通过一系列点的坐标位置来显示数据分布情况，是探索线性关系、聚类结构、离群点等的重要工具，也是常见的一种图形，在 <code>Matplotlib</code> 中，散点图由 <code>ax.scatter()</code> 或 <code>plt.scatter()</code> 生成，看例子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>seed(<span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(<span style="color:#bd93f9">100</span>)
+</span></span><span style="display:flex;"><span>y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(<span style="color:#bd93f9">100</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fig, ax <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>subplots()
+</span></span><span style="display:flex;"><span>sc <span style="color:#ff79c6">=</span> ax<span style="color:#ff79c6">.</span>scatter(x, y, alpha<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.7</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>set_title(<span style="color:#f1fa8c">&#34;Scatter Plot&#34;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>set_xlabel(<span style="color:#f1fa8c">&#34;X&#34;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>set_ylabel(<span style="color:#f1fa8c">&#34;Y&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></div><p>运行上面代码，即可得到一张散点图，
+
+  <img src="/img/post/2025-11-26-scatter1.png" alt="scatter1">
+
+
+上面的散点图是真的散，但是通常而言散点图用于寻找某种规律，因此可能会存在多类散点结合的情况，见下面的例子，通过构建两类散点分布，进行曲线拟合，寻找规律。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 1. 生成示例数据：两类近似线性关系的散点</span>
+</span></span><span style="display:flex;"><span>np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>seed(<span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span>n1, n2 <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">50</span>, <span style="color:#bd93f9">50</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 第一类：y ≈ 2x + 1</span>
+</span></span><span style="display:flex;"><span>x1 <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>linspace(<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">5</span>, n1)
+</span></span><span style="display:flex;"><span>y1 <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span> <span style="color:#ff79c6">*</span> x1 <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span> <span style="color:#ff79c6">+</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(n1) <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">0.5</span>      <span style="color:#6272a4"># 加一点噪声</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 第二类：y ≈ 2.2x + 1</span>
+</span></span><span style="display:flex;"><span>x2 <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>linspace(<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">5</span>, n2)
+</span></span><span style="display:flex;"><span>y2 <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2.2</span> <span style="color:#ff79c6">*</span> x2 <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span> <span style="color:#ff79c6">+</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(n2) <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">0.5</span>   <span style="color:#6272a4"># 加一点噪声</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 2. 对两类数据分别做线性拟合：y = kx + b</span>
+</span></span><span style="display:flex;"><span>k1, b1 <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>polyfit(x1, y1, <span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>k2, b2 <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>polyfit(x2, y2, <span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 为画直线生成平滑的 x</span>
+</span></span><span style="display:flex;"><span>x_fit <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>linspace(<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">100</span>)
+</span></span><span style="display:flex;"><span>y1_fit <span style="color:#ff79c6">=</span> k1 <span style="color:#ff79c6">*</span> x_fit <span style="color:#ff79c6">+</span> b1
+</span></span><span style="display:flex;"><span>y2_fit <span style="color:#ff79c6">=</span> k2 <span style="color:#ff79c6">*</span> x_fit <span style="color:#ff79c6">+</span> b2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 3. 作图</span>
+</span></span><span style="display:flex;"><span>fig, ax <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>subplots(figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">7</span>, <span style="color:#bd93f9">5</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 两类散点</span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>scatter(x1, y1, color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;C0&#34;</span>, marker<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;o&#34;</span>, alpha<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.8</span>, label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Class 1 data&#34;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>scatter(x2, y2, color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;C1&#34;</span>, marker<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;s&#34;</span>, alpha<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.8</span>, label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Class 2 data&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 对应拟合直线</span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>plot(x_fit, y1_fit, color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;C0&#34;</span>, linestyle<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;-&#34;</span>, label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Class 1 fit: y = </span><span style="color:#f1fa8c">{</span>k1<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">x + </span><span style="color:#f1fa8c">{</span>b1<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>plot(x_fit, y2_fit, color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;C1&#34;</span>, linestyle<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;--&#34;</span>, label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Class 2 fit: y = </span><span style="color:#f1fa8c">{</span>k2<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">x + </span><span style="color:#f1fa8c">{</span>b2<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 4. 美化</span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>set_title(<span style="color:#f1fa8c">&#34;Scatter Plot with Two Linear Classes and Their Fits&#34;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>set_xlabel(<span style="color:#f1fa8c">&#34;x&#34;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>set_ylabel(<span style="color:#f1fa8c">&#34;y&#34;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>legend()
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>grid(<span style="color:#ff79c6">True</span>, linestyle<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;--&#34;</span>, alpha<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.4</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></div><p>运行上面的程序，即可得两种数据的分布，当然这里构建的数据偏理想，真实科研数据会有差异。
+
+  <img src="/img/post/2025-11-26-scatter2.png" alt="scatter2">
+
+</p>
+<h3 id="7直方图">7.直方图</h3>
+<p>直方图用于显示数值型数据的分布情况。它将数据划分成一系列的“箱子”（bins），然后统计每个箱子中数据点的数量，绘制直方图主要用<code>plt.hist()</code>函数,照例先看代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 生成随机的正态分布数据</span>
+</span></span><span style="display:flex;"><span>np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>seed(<span style="color:#bd93f9">42</span>)
+</span></span><span style="display:flex;"><span>data <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(<span style="color:#bd93f9">1000</span>) <span style="color:#6272a4"># 生成 1000 个服从标准正态分布的随机数</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fig, ax <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>subplots(figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">6</span>, <span style="color:#bd93f9">4</span>))
+</span></span><span style="display:flex;"><span>hist_data <span style="color:#ff79c6">=</span> ax<span style="color:#ff79c6">.</span>hist(data, bins<span style="color:#ff79c6">=</span><span style="color:#bd93f9">30</span>, color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;skyblue&#39;</span>, edgecolor<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;black&#39;</span>, alpha<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.7</span>, density<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>set_title(<span style="color:#f1fa8c">&#34;Histogram of Normally Distributed Data&#34;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>set_xlabel(<span style="color:#f1fa8c">&#34;Value&#34;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>set_ylabel(<span style="color:#f1fa8c">&#34;Frequency (Count)&#34;</span>) <span style="color:#6272a4"># 如果 density=False，则为 Frequency</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># ax.set_ylabel(&#34;Probability Density&#34;) # 如果 density=True，则为 Probability Density</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 可以在图上添加均值线（可选）</span>
+</span></span><span style="display:flex;"><span>mean_value <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>mean(data)
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>axvline(mean_value, color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;red&#39;</span>, linestyle<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;dashed&#39;</span>, linewidth<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1.5</span>, label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#39;Mean: </span><span style="color:#f1fa8c">{</span>mean_value<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#39;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>legend()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></div><p>执行上述程序，得到如下的图，<code>hist</code>函数代码中<code>data</code>代表要绘制的数据，<code>bins</code>代表箱子的数量或边缘,可以是一个整数（如30），<code>Matplotlib</code> 会自动计算箱子边缘，也可以手动指定箱子边缘；<code>color</code>柱子的颜色；<code>edgecolor</code>柱子边框的颜色；<code>alpha</code>柱子的透明度；<code>density</code>如果为 <code>True</code>，则返回每个箱子的概率密度，而不是计数。此时，所有柱子面积之和为 1。<br>
+
+  <img src="/img/post/2025-11-26-hist.png" alt="hist">
+
+</p>
+<h3 id="8箱线图">8.箱线图</h3>
+<p>箱线图（Boxplot）是一种用于表示分布统计特征的图形，它展示了中位数（median）、上四分位数 / 下四分位数（Q1, Q3）、四分位距（IQR = Q3 − Q1）、异常值（outliers）、最大值/最小值（非异常部分）等信息，对科研和数据分析尤其重要。
+箱线图需要构建一组数据的list，程序中的<code>data</code>，每个元素需要有对应数据值，不能有空值，然后通过<code>ax.boxplot()</code>来画图,可以通过对应的参数来控制箱线图。继续看代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 生成三组示例数据</span>
+</span></span><span style="display:flex;"><span>np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>seed(<span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span>data1 <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>normal(loc<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>, scale<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>, size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">200</span>)   <span style="color:#6272a4"># 组1</span>
+</span></span><span style="display:flex;"><span>data2 <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>normal(loc<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>, scale<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.8</span>, size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">200</span>) <span style="color:#6272a4"># 组2</span>
+</span></span><span style="display:flex;"><span>data3 <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>normal(loc<span style="color:#ff79c6">=-</span><span style="color:#bd93f9">0.5</span>, scale<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1.2</span>, size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">200</span>) <span style="color:#6272a4"># 组3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 数据以 list 的形式输入</span>
+</span></span><span style="display:flex;"><span>data <span style="color:#ff79c6">=</span> [data1, data2, data3]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fig, ax <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>subplots(figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">7</span>, <span style="color:#bd93f9">5</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 绘制箱线图</span>
+</span></span><span style="display:flex;"><span>bp <span style="color:#ff79c6">=</span> ax<span style="color:#ff79c6">.</span>boxplot(
+</span></span><span style="display:flex;"><span>    data,
+</span></span><span style="display:flex;"><span>    notch<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>,          <span style="color:#6272a4"># 是否绘制凹口（显示中位数置信区间）</span>
+</span></span><span style="display:flex;"><span>    patch_artist<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>,   <span style="color:#6272a4"># 允许填充颜色</span>
+</span></span><span style="display:flex;"><span>    showfliers<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>,     <span style="color:#6272a4"># 是否显示异常值</span>
+</span></span><span style="display:flex;"><span>    widths<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.5</span>           <span style="color:#6272a4"># 箱子的宽度</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 为不同箱子填充颜色（常用于科研图）</span>
+</span></span><span style="display:flex;"><span>colors <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;#1f77b4&#39;</span>, <span style="color:#f1fa8c">&#39;#ff7f0e&#39;</span>, <span style="color:#f1fa8c">&#39;#2ca02c&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> patch, color <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">zip</span>(bp[<span style="color:#f1fa8c">&#39;boxes&#39;</span>], colors):
+</span></span><span style="display:flex;"><span>    patch<span style="color:#ff79c6">.</span>set_facecolor(color) <span style="color:#6272a4">#设置填充颜色</span>
+</span></span><span style="display:flex;"><span>    patch<span style="color:#ff79c6">.</span>set_alpha(<span style="color:#bd93f9">0.4</span>) <span style="color:#6272a4">#设置透明度</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>set_title(<span style="color:#f1fa8c">&#34;Boxplot Example (Three Data Groups)&#34;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>set_xticks([<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>])
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>set_xticklabels([<span style="color:#f1fa8c">&#34;Group 1&#34;</span>, <span style="color:#f1fa8c">&#34;Group 2&#34;</span>, <span style="color:#f1fa8c">&#34;Group 3&#34;</span>])
+</span></span><span style="display:flex;"><span>ax<span style="color:#ff79c6">.</span>set_ylabel(<span style="color:#f1fa8c">&#34;Value&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></div><p>执行上述代码，可得到如下的图：
+
+  <img src="/img/post/2025-11-26-boxplot.png" alt="boxplot">
+
+</p>
+<h3 id="9小练习">9.小练习</h3>
+<blockquote>
+</blockquote>
+<p>1.O3 and NO2 Timeseries<br>
+2.O3 histogram<br>
+3.O3 pie plot 0-50,50-100,100-160,160-215,215+<br>
+4.NO2 &amp; PM2.5 boxplot</p>
+<blockquote>
+</blockquote>
+<h2 id="下载练习">下载练习</h2>
+<p>如果你需要一个练习，可以尝试下载后执行练习，<a href="/downloads/6_matplotlib_basic.ipynb.zip">matplotlib_basic.ipynb</a>。</p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2025-10-22-nt-pycs-file-handling3/" data-toggle="tooltip" data-placement="top" title="python学习｜文件处理(pandas进阶)">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+<script src="https://giscus.app/client.js"
+        data-repo="pianist1900/pianist1900.github.io"
+        data-repo-id="R_kgDOPmSUaw"
+        data-category="General"
+        data-category-id="DIC_kwDOPmSUa84CvTsQ"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="mailto:2506790078@pku.edu.cn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/img/wechat-friend-invate.png">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; 龚说龚有理 2025
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow" title="' + t + '">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

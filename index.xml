@@ -6,14 +6,42 @@
     <description>Recent content on 龚说龚有理</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 22 Oct 2025 09:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 12 Nov 2025 09:00:00 +0800</lastBuildDate>
     <atom:link href="https://pianist1900.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>python学习｜数据可视化</title>
+      <link>https://pianist1900.github.io/notes/2025-11-26-nt-pycs-pics/</link>
+      <pubDate>Wed, 12 Nov 2025 09:00:00 +0800</pubDate>
+      <guid>https://pianist1900.github.io/notes/2025-11-26-nt-pycs-pics/</guid>
+      <description>&lt;!-- &gt; 千里之行始于足下 --&gt;&#xA;&lt;h2 id=&#34;matplotlib&#34;&gt;Matplotlib&lt;/h2&gt;&#xA;&lt;p&gt;前面我们已经学习了利用&lt;code&gt;Pandas&lt;/code&gt; 读取数据，并对数据进行简单的分析，本节我们讲解一下利用&lt;code&gt;Python&lt;/code&gt;来做图。&lt;code&gt;Python&lt;/code&gt;有多个画图的库，例如&lt;code&gt;Matplotlib&lt;/code&gt;、&lt;code&gt;seaborn&lt;/code&gt;等，先简单学习&lt;code&gt;Python&lt;/code&gt;中最流行的数据可视化库之一：&lt;code&gt;Matplotlib&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>python学习｜数据可视化</title>
+      <link>https://pianist1900.github.io/post/2025-11-26-nt-pycs-pics/</link>
+      <pubDate>Wed, 12 Nov 2025 09:00:00 +0800</pubDate>
+      <guid>https://pianist1900.github.io/post/2025-11-26-nt-pycs-pics/</guid>
+      <description>&lt;!-- &gt; 千里之行始于足下 --&gt;&#xA;&lt;h2 id=&#34;matplotlib&#34;&gt;Matplotlib&lt;/h2&gt;&#xA;&lt;p&gt;前面我们已经学习了利用&lt;code&gt;Pandas&lt;/code&gt; 读取数据，并对数据进行简单的分析，本节我们讲解一下利用&lt;code&gt;Python&lt;/code&gt;来做图。&lt;code&gt;Python&lt;/code&gt;有多个画图的库，例如&lt;code&gt;Matplotlib&lt;/code&gt;、&lt;code&gt;seaborn&lt;/code&gt;等，先简单学习&lt;code&gt;Python&lt;/code&gt;中最流行的数据可视化库之一：&lt;code&gt;Matplotlib&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>python学习｜文件处理(pandas进阶)</title>
+      <link>https://pianist1900.github.io/atmosphere/2025-10-22-nt-pycs-file-handling3/</link>
+      <pubDate>Wed, 22 Oct 2025 09:00:00 +0800</pubDate>
+      <guid>https://pianist1900.github.io/atmosphere/2025-10-22-nt-pycs-file-handling3/</guid>
+      <description>&lt;!-- &gt; 千里之行始于足下 --&gt;&#xA;&lt;h3 id=&#34;pandas数据处理分析与输出&#34;&gt;Pandas数据处理、分析与输出&lt;/h3&gt;&#xA;&lt;p&gt;前面我们已经学习了&lt;code&gt;Pandas&lt;/code&gt; 的基础操作，本节开始数据处理与分析层，也就是 &lt;code&gt;Pandas&lt;/code&gt; 的核心能力部分，需要掌握 &lt;code&gt;Pandas&lt;/code&gt; 在数据整理、统计分析、分组计算、时间序列处理等方面的常用功能，学会完成从“原始数据”到“分析结果”的关键步骤。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>python学习｜文件处理(pandas进阶)</title>
+      <link>https://pianist1900.github.io/notes/2025-10-22-nt-pycs-file-handling3/</link>
+      <pubDate>Wed, 22 Oct 2025 09:00:00 +0800</pubDate>
+      <guid>https://pianist1900.github.io/notes/2025-10-22-nt-pycs-file-handling3/</guid>
+      <description>&lt;!-- &gt; 千里之行始于足下 --&gt;&#xA;&lt;h3 id=&#34;pandas输出处理与分析&#34;&gt;Pandas输出处理与分析&lt;/h3&gt;&#xA;&lt;p&gt;前面我们已经学习了&lt;code&gt;Pandas&lt;/code&gt; 的“基础操作层”（读写数据、查看结构、筛选、增删改等，本节进入“数据处理与分析层”，也就是 &lt;code&gt;Pandas&lt;/code&gt; 的核心能力部分。核心是：掌握 &lt;code&gt;Pandas&lt;/code&gt; 在数据整理、统计分析、分组计算、时间序列处理等方面的常用功能，学会完成从“原始数据”到“分析结果”的关键步骤。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>python学习｜文件处理(pandas进阶)</title>
       <link>https://pianist1900.github.io/post/2025-10-22-nt-pycs-file-handling3/</link>
       <pubDate>Wed, 22 Oct 2025 09:00:00 +0800</pubDate>
       <guid>https://pianist1900.github.io/post/2025-10-22-nt-pycs-file-handling3/</guid>
-      <description>&lt;!-- &gt; 千里之行始于足下 --&gt;&#xA;&lt;h3 id=&#34;pandas输出处理与分析&#34;&gt;Pandas输出处理与分析&lt;/h3&gt;&#xA;&lt;p&gt;前面我们已经学习了&lt;code&gt;Pandas&lt;/code&gt; 的“基础操作层”（读写数据、查看结构、筛选、增删改等，本节进入“数据处理与分析层”，也就是 &lt;code&gt;Pandas&lt;/code&gt; 的核心能力部分。核心是：掌握 &lt;code&gt;Pandas&lt;/code&gt; 在数据整理、统计分析、分组计算、时间序列处理等方面的常用功能，学会完成从“原始数据”到“分析结果”的关键步骤。&lt;/p&gt;</description>
+      <description>&lt;!-- &gt; 千里之行始于足下 --&gt;&#xA;&lt;h3 id=&#34;pandas数据处理分析与输出&#34;&gt;Pandas数据处理、分析与输出&lt;/h3&gt;&#xA;&lt;p&gt;前面我们已经学习了&lt;code&gt;Pandas&lt;/code&gt; 的基础操作，本节开始数据处理与分析层，也就是 &lt;code&gt;Pandas&lt;/code&gt; 的核心能力部分，需要掌握 &lt;code&gt;Pandas&lt;/code&gt; 在数据整理、统计分析、分组计算、时间序列处理等方面的常用功能，学会完成从“原始数据”到“分析结果”的关键步骤。&lt;/p&gt;</description>
     </item>
     <item>
       <title>python学习｜文件处理(pandas)</title>
